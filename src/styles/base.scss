@@ -1,0 +1,12 @@
+@import './mixin.scss';
+
+._line-1 {
+    @include line(1)
+}
+
+$color-primary: #217F8F;
+
+$color-text-title: #222;
+$color-text-primary: #333;
+$color-text-regular: #666;
+$color-text-secondary: #888;

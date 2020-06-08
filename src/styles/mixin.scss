@@ -1,0 +1,50 @@
+@mixin flex ($direction: false, $horizontal: false, $vertical: false, $wrap: false, $wrap_vertical: false) {
+
+    // 方向 ， 水平， 竖直， 换行， 竖直方向行分布
+
+    $flex_direction: (r: row, c: column, rr: row-reverse, cr: column-reverse);
+    $Justify_content: (fs: flex-start, fe: flex-end, c: center, sb: space-between, sa: space-around);
+    $align_items: (s: stretch, c: center, fs: flex-start, fe: flex-end, b: baseline);
+    $flex_wrap: (n: nowrap, w: wrap, wr: wrap-reverse);
+    $align_content: (s: stretch, c: center, fs: flex-start, fe: flex-end, sb: space-between, sa: space-around);
+
+    display: flex;
+    @if $direction {
+        flex-direction: map-get($flex_direction, $direction)
+    }
+    @if $horizontal {
+        justify-content: map-get($Justify_content, $horizontal)
+    }
+    @if $vertical {
+        align-items: map-get($align_items, $vertical)
+    }
+    @if $wrap {
+        flex-wrap: map-get($flex_wrap, $wrap)
+    }
+    @if $wrap and $wrap_vertical {
+        align-content: map-get($align_content, $wrap_vertical)
+    }
+}
+
+@mixin line ($l: 1) {
+    // $l 行数
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @if ($l == 1) {
+        white-space: nowrap;
+    } @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $l;
+        -webkit-box-orient: vertical;
+    }
+}
+
+@mixin square ($size) {
+    width: $size;
+    height: $size;
+}
+
+@mixin cirle ($size) {
+    @include square($size);
+    border-radius: 50%;
+}
